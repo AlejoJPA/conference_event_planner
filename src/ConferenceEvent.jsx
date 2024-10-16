@@ -6,9 +6,9 @@ import { incrementQuantity, decrementQuantity } from "./venueSlice";
 const ConferenceEvent = () => {
     const [showItems, setShowItems] = useState(false);
     const [numberOfPeople, setNumberOfPeople] = useState(1);
-    const venueItems = useSelector((state) => state.venue);
+    const venueItems = useSelector((state) => state.venue); //function retrieves venue items from the Redux store state.
     const dispatch = useDispatch();
-    const remainingAuditoriumQuantity = 3 - venueItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity;
+    const remainingAuditoriumQuantity = 3 - venueItems.find(item => item.name === "Auditorium Hall (Capacity:200)").quantity; //it calculates the remaining number of available auditorium halls to three
 
     
     const handleToggleItems = () => {
@@ -47,16 +47,16 @@ const ConferenceEvent = () => {
     const ItemsDisplay = ({ items }) => {
 
     };
-    const calculateTotalCost = (section) => {
+    const calculateTotalCost = (section) => { // Calculate the total cost of the section "venue"
         let totalCost = 0;
         if (section === "venue") {
           venueItems.forEach((item) => {
-            totalCost += item.cost * item.quantity;
+            totalCost += item.cost * item.quantity; 
           });
         }
         return totalCost;
       };
-    const venueTotalCost = calculateTotalCost("venue");
+    const venueTotalCost = calculateTotalCost("venue"); // assigning venue total cost to a new variable (used later)
 
     const navigateToProducts = (idType) => {
         if (idType == '#venue' || idType == '#addons' || idType == '#meals') {
@@ -144,7 +144,7 @@ const ConferenceEvent = () => {
             </div>
           ))}
         </div>
-        <div className="total_cost">Total Cost: ${venueTotalCost}</div>
+        <div className="total_cost">Total Cost: ${venueTotalCost}</div> {/*displays the total cost of all selected venue items*/}
       </div>
 
                             {/*Necessary Add-ons*/}
